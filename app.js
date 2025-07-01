@@ -12,7 +12,7 @@ const trainingPlans = {
         { name: "Ryg/Bryst: dumbbell pullover", sets: "3 sæt af 10-12 gentagelser" }
       ],
       "Dag 2 - Arme og Mave": [
-        { name: "Biceps: alternating biceps curls", sets: "3 sæt af 8-10 gentagelser pr. arm" },
+        { name: "Biceps: alternativ biceps curls", sets: "3 sæt af 8-10 gentagelser pr. arm" },
         { name: "Triceps: overhead triceps extensions", sets: "3 sæt af 8-10 gentagelser" },
         { name: "Biceps: seated dumbbell curls", sets: "2 sæt af 10-12 gentagelser pr. arm" },
         { name: "Triceps: bench dips", sets: "2 sæt af 10-12 gentagelser" },
@@ -34,7 +34,7 @@ const trainingPlans = {
   },
   fullBodyWorkout: {
     name: "Full Body Workout",
-    description: "En omfattende helkropstræningsrutine, der targetter alle store muskelgrupper.",
+    description: "En omfattende helkropstræningsrutine, der fokuserer alle store muskelgrupper.",
     workouts: {
       "Dag 1 - Helkrop": [
         { name: "Ben: barbell back squats", sets: "3 sæt af 5 gentagelser" },
