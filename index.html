@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alefi's Elite Trænings Tracker</title>
+  <!-- Sikre, at alle URL'er resolver relativt til denne mappe -->
+  <base href="./">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fallback icon -->
+  <link rel="icon" href="icon-192.png" sizes="192x192">
+
+  <!-- Chart.js (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1 id="greeting">God aften, Mester!</h1>
+    <div id="dailyQuote">💪 Stærke kroppe skaber stærke sind.</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value" id="totalWorkouts">0</div>
+        <div class="stat-label">Totale Workouts</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-buttons">
+    <button onclick="showWorkoutPlans()">🏋️ Workout</button>
+    <button onclick="showProgress()">📊 Fremskridt</button>
+    <button onclick="showWeightLog()">⚖️ Vægtlog</button>
+    <button onclick="showPRs()">🏅 Personlige rekorder</button>
+    <button onclick="showAchievements()">🏆 Præstationer</button>
+    <button onclick="showSettings()">⚙️ Indstillinger</button>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modal-content" id="modalContent"></div>
+  </div>
+
+  <div id="workoutPlansView" class="view">
+    <div id="plansList"></div>
+  </div>
+
+  <div id="workoutContent" class="view hidden"></div>
+
+  <div id="progressView" class="view hidden">
+    <h2>Workouts fuldført</h2>
+    <div class="chart-container">
+      <canvas id="progressChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+
+  <div id="weightLogView" class="view hidden">
+    <h2>Vægtsporing</h2>
+    <div class="weight-input">
+      <input type="number" id="weightInput" placeholder="Indtast vægt (kg)" step="0.1">
+      <button onclick="addWeight()">Tilføj Vægt</button>
+    </div>
+    <div class="chart-container">
+      <canvas id="weightChart" width="400" height="200"></canvas>
+    </div>
+    <button onclick="setWeightGoal()">Sæt vægtmål</button>
+    <div id="weightGoalDisplay"></div>
+    <div id="weightLogList"></div>
+  </div>
+
+  <div id="prView" class="view hidden">
+    <h2>Personlige rekorder</h2>
+    <div class="weight-input">
+      <input type="text" id="prExerciseInput" placeholder="Øvelse (fx Bench Press)">
+      <input type="number" id="prWeightInput" placeholder="Vægt (kg)" step="0.1">
+      <input type="number" id="prRepsInput" placeholder="Gentagelser" step="1">
+      <button onclick="addPR()">Tilføj PR</button>
+    </div>
+    <div id="prList"></div>
+  </div>
+
+  <div id="achievementsView" class="view hidden">
+    <h2>Præstationer</h2>
+    <div id="achievementsList"></div>
+  </div>
+
+  <div id="settingsView" class="view hidden">
+    <h2>Indstillinger</h2>
+    <button onclick="resetAllData()">🔄 Nulstil alle data</button>
+  </div>
+
+  <!-- Din app-logik -->
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      // Brug relativ sti, så den indlæses fra repo-mappen
+      navigator.serviceWorker
+        .register('service-worker.js')
+        .catch(err => console.error('SW registrering mislykkedes:', err));
+    }
+  </script>
+</body>
+</html>
